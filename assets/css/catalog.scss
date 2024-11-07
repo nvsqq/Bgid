@@ -1,0 +1,319 @@
+@charset "UTF-8";
+
+@import './all.scss';
+
+@include all;
+
+@include header;
+
+@include footer;  
+
+  /* Общие стили */
+  
+
+
+.btn{
+    padding: 10px;
+    background-color: #ffff;
+    border-radius: 20px;
+    border: 0px;
+    width: 100%;
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    img{
+        border-radius: 10px;
+        width: 100%;
+        height: 60%;
+    }
+  }
+  
+  .content__wrap{
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+  }
+  
+  .info{
+    width: 50%;
+  }
+  
+  
+  .slide{
+    img{
+      width: 100%;
+      border-radius: 20px;
+      margin: 10px 0;
+      @media (max-width: 426px) {
+        margin: 10px 0;
+        width: 100%;
+      }
+      @media (min-width: 768px) {
+        margin: 10px 60px;
+        width: 80%;
+      }
+      @media (min-width: 1024px) {
+        margin: 10px 160px;
+        width: 60%;
+      }
+      @media (min-width: 1025px) {
+        margin: 10px 0;
+        width: 120%;
+      }
+    }
+  }
+  .modal {
+    display: none; 
+    position: fixed;
+    z-index: 1111;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    &__content {
+      margin: 10% auto;
+      background-color: #fefefe;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      border-radius: 30px;
+      @media (max-width: 426px) {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: flex-end;
+
+      }
+      @media (min-width: 768px) {
+        
+      }
+      @media (min-width: 1024px) {
+        
+      }
+        a{
+            text-decoration: none;
+            color: #000;
+        }
+        a:hover{
+            text-decoration: underline;
+        }
+        
+        a,p{
+            display: flex;
+            width: 70%;
+            margin: auto;
+            font-weight: 500;
+            font-size: 20px;
+            @media (max-width: 426px) {
+              width: 100%;
+            }
+        }
+      }
+  
+      &__close-8,&__close-7,&__close-6,&__close-5,&__close-4,&__close-3,&__close-2,&__close-1,&__close {
+        cursor: pointer;
+        color: #aaa;
+        float: right;
+        font-size: 50px;
+        font-weight: bold;
+    }
+    &__main{
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+        
+        @media (max-width: 1024px) {
+          flex-direction: column;
+        }
+    }
+}
+  .close:hover,
+  .close:focus {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+.catalog{ 
+  &__wrap {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    
+  }
+  &__filters {
+    margin-bottom: 30px;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    @media (max-width: 426px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
+    }
+    @media (min-width: 768px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-template-rows: 1fr ;
+    }
+    @media (min-width: 1024px) {
+      display: flex;
+    }
+  }
+  &__filters_title {
+    font-size: 20px;
+  }
+  &__filters #showAllButton {
+    color: #696969;
+  }
+  
+  &__filter-btn {
+      border: 1px;
+      border-radius: 20px;
+      padding: 5px 9px;
+      cursor: pointer;
+      font-size: 20px;
+      font-weight: 500;
+      transition: all 1.2s ease;
+      
+  }
+  &__filter-btn.active{
+    background-color: #000;
+    color: #fff;
+    transition: all 1.2s; 
+  }
+  &__search-input {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 25px;
+    border: 2px solid #ccc;
+    width: 50%;
+    @media (max-width: 426px) {
+      width: 100%;
+    }
+
+  }
+  
+  &__left-block {
+    margin-right: 20px;
+    margin-left: 25px;
+  }
+  &__right-block{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+  }
+  
+  &__right-block #noResultsMessage {
+    margin-top: 20px;
+    display: none;
+    font-size: 20px;
+  }
+  &__title {
+    font-size: 25px;
+    @media (max-width: 320px) {
+      font-size: 20px;
+    }
+  }
+  &__container {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
+    @media (max-width: 426px) {
+      display: grid;
+      grid-template-columns: 1fr ;
+      grid-template-rows: 1fr;
+    }
+    @media (min-width: 768px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr ;
+    }
+    @media (min-width: 1024px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr ;
+      grid-template-rows: 1fr 1fr;
+    }
+    
+  }
+  &__plate {
+    box-shadow: 0 0 10px 0 rgba(97, 97, 97, 0.2);
+    color: #000;
+    border-radius: 10px;
+    display: none;
+    flex-direction: column;
+  }
+  
+  &__plate_text {
+    padding: 10px;
+  }
+  &__plate_title {
+    font-size: 16px;
+  }
+  &__plate_grade {
+    margin-top: 5px;
+  }
+  
+  &__plate_type {
+    margin-top: 5px;
+    font-size: 13px;
+    color: #4f4f4f;
+  }
+  &__plate_description {
+    margin-top: 10px;
+    font-size: 16px;
+  }
+  &__plate_adress {
+    margin-top: 5px;
+    font-size: 13px;
+    color: #000;
+    vertical-align: bottom;
+  }
+}
+
+
+  .pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .pagination button {
+    width: 60px;
+    height: 30px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+    cursor: pointer;
+    background-color: #F0F0F0;
+    transition: 0.3s;
+  }
+  .pagination button.active {
+    border-bottom: 3.5px solid #000;
+    padding-top: 3.5px;
+  }
+  .pagination button:disabled {
+    cursor: not-allowed;
+  }
+  .pagination button:disabled:hover {
+    background-color: #F0F0F0;
+  }
+  .pagination button:first-child {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+  }
+  .pagination button:last-child {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+  }
+  .pagination button:hover {
+    background-color: #dfdfdf;
+  }
