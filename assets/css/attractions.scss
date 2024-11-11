@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+@import './all.scss';
+
+@include all;
+
+@include header;
+
+@include footer;  
+
