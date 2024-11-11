@@ -2,9 +2,65 @@
 
 @import './all.scss';
 
-@include all;
+@include all;   
 
 @include header;
 
 @include footer;  
 
+.card{
+    display: flex;
+    justify-content: center;
+    &__title{
+        margin-bottom: 50px;
+        font-size: 30px;
+        font-weight: 700;
+        color: #304041;
+    }
+    &__wrap{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 65px;
+    }
+    &__card{
+        gap: 100px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    &__description{
+        font-size: 20px;
+        font-weight: 500;
+        width: 350px;
+    }
+    &__img{
+        display: flex;
+        flex-direction: column;
+        img{
+            width: 365px;
+        } 
+    }
+
+
+
+    iframe{
+        width: 450px;
+        height: 450px;
+        border-radius: 10px;
+        @media (max-width: 376px) {
+        }
+        @media (min-width: 425px) {
+        }
+        @media (min-width: 768px) {
+        }
+        @media (min-width: 1024px) {
+        }
+        @media (min-width: 1400px) {
+            
+        }
+      } 
+    
+        
+}
