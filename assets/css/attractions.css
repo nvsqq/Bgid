@@ -316,3 +316,44 @@ li {
   font-weight: 800;
   text-transform: uppercase;
 }
+
+.card {
+  display: flex;
+  justify-content: center;
+}
+.card__title {
+  margin-bottom: 50px;
+  font-size: 30px;
+  font-weight: 700;
+  color: #304041;
+}
+.card__wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 65px;
+}
+.card__card {
+  gap: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.card__description {
+  font-size: 20px;
+  font-weight: 500;
+  width: 350px;
+}
+.card__img {
+  display: flex;
+  flex-direction: column;
+}
+.card__img img {
+  width: 365px;
+}
+.card iframe {
+  width: 450px;
+  height: 450px;
+  border-radius: 10px;
+}
