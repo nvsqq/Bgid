@@ -93,9 +93,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    function set_first_page() {
-        currentPage=1
-    }
 
     document.getElementById('showAllButton').addEventListener('click', function () {
         showAllItems = true;
