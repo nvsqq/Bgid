@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     await getData()
 
     function createPlate(elemNum) {
-        const catalogPlate = document.createElement('div');
+        const catalogPlate = document.createElement('div'); 
         catalogPlate.classList.add('catalog__plate');
         catalogPlate.id = filteredItems[elemNum].filter
         catalogPlate.setAttribute('data-id', filteredItems[elemNum].id)
@@ -75,13 +75,6 @@ document.addEventListener('DOMContentLoaded', async function () {
             const title = item.title.toLowerCase(); 
             return title.includes(searchTerm) && (activeFilter === 'Все' || item.filter === activeFilter);
         });
-        
-        if (searchTerm === 'апрпапр') {
-            document.getElementById('secretContainer').style.display = 'flex';
-            document.getElementById('noResultsMessage').style.display = 'none';
-        } else {
-            document.getElementById('secretContainer').style.display = 'none';
-        }
 
         document.querySelector(`button[data-id="${activeFilter}"]`).classList.add('active');
         
