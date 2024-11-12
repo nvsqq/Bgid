@@ -14,7 +14,9 @@
 </head>
 
 <body class="overflow-h">
-
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
     <header class="header">
 		<img src="./assets/img/bgid.png" alt="bgid" ></a>
 		<div class="header__menu menu">
@@ -57,8 +59,6 @@
                     </div>
                     <input type="text" id="searchInput" class="catalog__search-input" placeholder="Поиск по заголовку">
                     <div id="noResultsMessage">Ничего не найдено.</div>
-                    <img id="secretContainer" style="display:none;" src="./assets/img/secret.jpg"
-                        alt="Секретная картинка">
                     <div class="catalog__container">
                         <div class="catalog__plate" id="Парки">
                             <button id="contactBtn" class="btn">
@@ -161,7 +161,7 @@
                                     </p>
                                 </div>
                             </button>
-                            <div id="contactModal-2" class="modal">
+                            <!-- <div id="contactModal-2" class="modal">
                                 <div class="modal__content">
                                     <span class="modal__close-2">&times;</span>
                                     <h2>Белгородская государственная филармония</h2>
@@ -185,7 +185,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="catalog__plate" id="Площади">
                             <button id="contactBtn-3" class="btn">
@@ -201,7 +201,7 @@
                                     </p>
                                 </div>
                             </button>
-                            <div id="contactModal-3" class="modal">
+                            <!-- <div id="contactModal-3" class="modal">
                                 <div class="modal__content">
                                     <span class="modal__close-3">&times;</span>
                                     <h2>Соборная площадь</h2>
@@ -225,9 +225,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
-                        <div class="catalog__plate" id="Парки">
+                        <div class="catalog__plate" id="Парки"Парки>
                             <button id="contactBtn-4" class="btn">
                                 <img src="./assets/img/парк _победы.jpg" class="catalog__container_plate_img"></img>
                                 <div class="catalog__plate_text">
@@ -240,7 +240,7 @@
                                         Парк культуры и отдыха «Парк Победы» — это красивое и уютное место, где можно провести время с семьей или друзьями.                                    </p>
                                 </div>
                             </button>
-                            <div id="contactModal-4" class="modal">
+                            <!-- <div id="contactModal-4" class="modal">
                                 <div class="modal__content">
                                     <span class="modal__close-4">&times;</span>
                                     <h2>Парк Победы</h2>
@@ -265,7 +265,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             
                         </div>
                         <div class="catalog__plate" id="Храмы и церкви">
@@ -462,7 +462,8 @@
 <script src="./modal-catalog.js"></script>
 <script src="./pagination.js"></script>
 <script src="./burger.js"></script>
-
+<script src="./filtrs.js"></script>
+<script src="./loader.js"></script>
 </html>
 
 
