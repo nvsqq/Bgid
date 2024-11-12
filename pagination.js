@@ -9,20 +9,20 @@ document.addEventListener('DOMContentLoaded', async function () {
     let items = []
     const pagination = document.getElementById('pagination');
     const noResultsMessage = document.getElementById('noResultsMessage');
-    
     async function getData() {
         try {
             const response = await fetch('https://672a01fc6d5fa4901b6f58b6.mockapi.io/catalog/catalog');
+
             const items_temp = await response.json(); 
             items_temp.forEach(item => {
                 items.push(item)
             })
+           
         } catch (error) {
             console.error('Ошибка:', error);
         }
     }
-    await getData()
-
+    getData();
     function createPlate(elemNum) {
         const catalogPlate = document.createElement('div'); 
         catalogPlate.classList.add('catalog__plate');
@@ -46,14 +46,14 @@ document.addEventListener('DOMContentLoaded', async function () {
         // `
         catalogPlate.innerHTML = `
         <button id="contactBtn" class="btn">
-            <img src="./assets/img/${filteredItems[elemNum].imgs[0]}" class="catalog__container_plate_img"></img>
+            <img src="./assets/img/${items[elemNum].imgs[0]}" class="catalog__container_plate_img"></img>
             <div class="catalog__plate_text">   
                 <h4 class="catalog__plate_title">
-                    ${filteredItems[elemNum].title}
+                    ${items [elemNum].title}
                 </h4>
                 <p class="catalog__plate_type"></p>
                 <p class="catalog__plate_description">
-                    ${filteredItems[elemNum].description_plate }
+                    ${items[elemNum].description_plate}
                 </p>
             </div>
         </button>
