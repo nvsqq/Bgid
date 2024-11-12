@@ -139,12 +139,14 @@ document.addEventListener('DOMContentLoaded', async function () {
         });
     });
 
+
     document.querySelectorAll('.catalog__container').forEach(plate => {
         plate.addEventListener('click', function (elem) {
             const itemid = elem.target.closest('.catalog__plate').getAttribute('data-id')
             localStorage.setItem('item-id', itemid)
         });
     });
+
 
     document.getElementById('showAllButton').addEventListener('click', function () {
         showAllItems = true;
