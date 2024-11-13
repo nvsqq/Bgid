@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     function createPlate(elemNum) {
         const catalogPlate = document.createElement('div'); 
         catalogPlate.classList.add('catalog__plate');
-        catalogPlate.id = filteredItems[elemNum].filter
+        catalogPlate.id = filteredItems[elemNum].filtr  
         catalogPlate.setAttribute('data-id', filteredItems[elemNum].id)
         // catalogPlate.innerHTML = `
         // <a href="landmark.html">
@@ -46,14 +46,14 @@ document.addEventListener('DOMContentLoaded', async function () {
         // `
         catalogPlate.innerHTML = `
         <button id="contactBtn" class="btn">
-            <img src="./assets/img/${items[elemNum].imgs[0]}" class="catalog__container_plate_img"></img>
+            <img src="./assets/img/${filteredItems[elemNum].imgs[0]}" class="catalog__container_plate_img"></img>
             <div class="catalog__plate_text">   
                 <h4 class="catalog__plate_title">
-                    ${items [elemNum].title}
+                    ${filteredItems[elemNum].title}
                 </h4>
-                <p class="catalog__plate_type"></p>
+                <p class="catalog__plate_type">${filteredItems[elemNum].filtr}</p>
                 <p class="catalog__plate_description">
-                    ${items[elemNum].description_plate}
+                    ${filteredItems[elemNum].description_plate}
                 </p>
             </div>
         </button>
@@ -73,9 +73,9 @@ document.addEventListener('DOMContentLoaded', async function () {
         
         filteredItems = Array.from(items).filter(item => {
             const title = item.title.toLowerCase(); 
-            return title.includes(searchTerm) && (activeFilter === 'Все' || item.filter === activeFilter);
+            return title.includes(searchTerm) && (activeFilter == 'Все' || item.filtr === activeFilter);
         });
-
+        // console.log(filteredItems, items, activeFilter)
         document.querySelector(`button[data-id="${activeFilter}"]`).classList.add('active');
         
         filteredItems.forEach(item => {
@@ -85,9 +85,9 @@ document.addEventListener('DOMContentLoaded', async function () {
             }
         });
 
-        for (let i = start; i < end && i < items.length; i++) {
-            items[i].style = 'display: flex';
-        }
+        // for (let i = start; i < end && i < items.length; i++) {
+        //     items[i].style = 'display: flex';
+        // }
 
         if (showAllItems) {
             createPage()
@@ -95,14 +95,17 @@ document.addEventListener('DOMContentLoaded', async function () {
                 createPlate(i)
             }
         }
-
+        
         if (filteredItems.length === 0) {
             noResultsMessage.style.display = 'block';
             pagination.style.display = 'none';
+            document.getElementById('catalog__container').style.display = 'none'
         } else {
             noResultsMessage.style.display = 'none';
             pagination.style.display = 'flex';
+            document.getElementById('catalog__container').style.display = 'grid'
         }
+
     }
 
     function renderPagination() {

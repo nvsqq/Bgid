@@ -127,80 +127,80 @@
   //   });
   
   
-    document.addEventListener("DOMContentLoaded", () => {
-      const modal_5 = document.getElementById("contactModal-5");
-      const btn = document.getElementById("contactBtn-5");
-      const span = document.getElementsByClassName("modal__close-5")[0];
+    // document.addEventListener("DOMContentLoaded", () => {
+    //   const modal_5 = document.getElementById("contactModal-5");
+    //   const btn = document.getElementById("contactBtn-5");
+    //   const span = document.getElementsByClassName("modal__close-5")[0];
     
   
-      btn.onclick = function () {
-        modal_5.style.display = "block";
-      };
-      span.onclick = function () {
-        modal_5.style.display = "none";
-      };
-      window.onclick = function (event) {
-        if (event.target == modal_5) {
-          modal_5.style.display = "none";
-        }
-      };
-    });
+    //   btn.onclick = function () {
+    //     modal_5.style.display = "block";
+    //   };
+    //   span.onclick = function () {
+    //     modal_5.style.display = "none";
+    //   };
+    //   window.onclick = function (event) {
+    //     if (event.target == modal_5) {
+    //       modal_5.style.display = "none";
+    //     }
+    //   };
+    // });
 
-    document.addEventListener("DOMContentLoaded", () => {
-        const modal_6 = document.getElementById("contactModal-6");
-        const btn = document.getElementById("contactBtn-6");
-        const span = document.getElementsByClassName("modal__close-6")[0];
+    // document.addEventListener("DOMContentLoaded", () => {
+    //     const modal_6 = document.getElementById("contactModal-6");
+    //     const btn = document.getElementById("contactBtn-6");
+    //     const span = document.getElementsByClassName("modal__close-6")[0];
     
-        btn.onclick = function () {
-            modal_6.style.display = "block";
-        };
-        span.onclick = function () {
-            modal_6.style.display = "none";
-        };
+    //     btn.onclick = function () {
+    //         modal_6.style.display = "block";
+    //     };
+    //     span.onclick = function () {
+    //         modal_6.style.display = "none";
+    //     };
 
-        window.onclick = function (event) {
-            if (event.target == modal_6) {
-                modal_6.style.display = "none";
-            }
-        };
-    });
+    //     window.onclick = function (event) {
+    //         if (event.target == modal_6) {
+    //             modal_6.style.display = "none";
+    //         }
+    //     };
+    // });
 
-    document.addEventListener("DOMContentLoaded", () => {
-        const modal_7 = document.getElementById("contactModal-7");
-        const btn = document.getElementById("contactBtn-7");
-        const span = document.getElementsByClassName("modal__close-7")[0];
+    // document.addEventListener("DOMContentLoaded", () => {
+    //     const modal_7 = document.getElementById("contactModal-7");
+    //     const btn = document.getElementById("contactBtn-7");
+    //     const span = document.getElementsByClassName("modal__close-7")[0];
     
-        btn.onclick = function () {
-            modal_7.style.display = "block";
-        };
-        span.onclick = function () {
-            modal_7.style.display = "none";
-        };
+    //     btn.onclick = function () {
+    //         modal_7.style.display = "block";
+    //     };
+    //     span.onclick = function () {
+    //         modal_7.style.display = "none";
+    //     };
 
-        window.onclick = function (event) {
-            if (event.target == modal_7) {
-                modal_7.style.display = "none";
-            }
-        };
-    });
+    //     window.onclick = function (event) {
+    //         if (event.target == modal_7) {
+    //             modal_7.style.display = "none";
+    //         }
+    //     };
+    // });
 
-    document.addEventListener("DOMContentLoaded", () => {
-        const modal_8 = document.getElementById("contactModal-8");
-        const btn = document.getElementById("contactBtn-8");
-        const span = document.getElementsByClassName("modal__close-8")[0];
+    // document.addEventListener("DOMContentLoaded", () => {
+    //     const modal_8 = document.getElementById("contactModal-8");
+    //     const btn = document.getElementById("contactBtn-8");
+    //     const span = document.getElementsByClassName("modal__close-8")[0];
     
-        btn.onclick = function () {
-            modal_8.style.display = "block";
-        };
-        span.onclick = function () {
-            modal_8.style.display = "none";
-        };
+    //     btn.onclick = function () {
+    //         modal_8.style.display = "block";
+    //     };
+    //     span.onclick = function () {
+    //         modal_8.style.display = "none";
+    //     };
 
-        window.onclick = function (event) {
-            if (event.target == modal_8) {
-                modal_8.style.display = "none";
-            }
-        };
-    });
+    //     window.onclick = function (event) {
+    //         if (event.target == modal_8) {
+    //             modal_8.style.display = "none";
+    //         }
+    //     };
+    // });
     
     //  commit 1 
