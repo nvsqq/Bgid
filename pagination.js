@@ -5,45 +5,37 @@ document.addEventListener('DOMContentLoaded', async function () {
     let currentPage = parseInt(localStorage.getItem('currentPage')) || 1;
 
     const itemsPerPage = 6;
-    // const items = document.querySelectorAll('.catalog__plate');
-    let items = []
+    let items = [];
     const pagination = document.getElementById('pagination');
     const noResultsMessage = document.getElementById('noResultsMessage');
+
     async function getData() {
         try {
             const response = await fetch('https://672a01fc6d5fa4901b6f58b6.mockapi.io/catalog/catalog');
-
             const items_temp = await response.json(); 
             items_temp.forEach(item => {
-                items.push(item)
-            })
-           
+                items.push(item);
+            });
         } catch (error) {
             console.error('Ошибка:', error);
         }
     }
-    getData();
+
+    await getData(); 
+
+    activeFilter = 'Все';
+    localStorage.setItem('currentPage', 1);
+    document.querySelectorAll('.catalog__filter-btn').forEach(btn => btn.classList.remove('active'));
+    const allButton = document.querySelector('[data-id="Все"]');
+    if (allButton) {
+        allButton.classList.add('active');
+    }
+
     function createPlate(elemNum) {
         const catalogPlate = document.createElement('div'); 
         catalogPlate.classList.add('catalog__plate');
-        catalogPlate.id = filteredItems[elemNum].filtr  
-        catalogPlate.setAttribute('data-id', filteredItems[elemNum].id)
-        // catalogPlate.innerHTML = `
-        // <a href="landmark.html">
-        //     <img src="https://raw.githubusercontent.com/nvsqq/Bgid/refs/heads/main/assets/img/${filteredItems[elemNum].imgs[0]}" id="plate_img"></img>
-        //     <div class="catalog__plate_text">
-        //         <h4 class="catalog__plate_title">
-        //             ${filteredItems[elemNum].title}
-        //         </h4>
-        //         <p class="catalog__plate_grade">${filteredItems[elemNum].grade}</p>
-        //         <p class="catalog__plate_type">${filteredItems[elemNum].filter}</p>
-        //         <p class="catalog__plate_description">
-        //             ${filteredItems[elemNum].description}
-        //         </p>
-        //         <p class="catalog__plate_adress">${filteredItems[elemNum].adress}</p>
-        //     </div>
-        // </a>
-        // `
+        catalogPlate.id = filteredItems[elemNum].filtr;  
+        catalogPlate.setAttribute('data-id', filteredItems[elemNum].id);
         catalogPlate.innerHTML = `
         <button id="contactBtn" class="btn">
             <img src="./assets/img/${filteredItems[elemNum].imgs[0]}" class="catalog__container_plate_img"></img>
@@ -57,11 +49,11 @@ document.addEventListener('DOMContentLoaded', async function () {
                 </p>
             </div>
         </button>
-        `
+        `;
         document.getElementById('catalog__container').appendChild(catalogPlate);
     }
 
-    function createPage(elemNum) {
+    function createPage() {
         document.querySelector('.catalog__container').innerHTML = '';
     }
 
@@ -75,42 +67,28 @@ document.addEventListener('DOMContentLoaded', async function () {
             const title = item.title.toLowerCase(); 
             return title.includes(searchTerm) && (activeFilter == 'Все' || item.filtr === activeFilter);
         });
-        // console.log(filteredItems, items, activeFilter)
-        document.querySelector(`button[data-id="${activeFilter}"]`).classList.add('active');
-        
-        filteredItems.forEach(item => {
-            createPage()
-            for (let i = start; i < end && i < filteredItems.length; i++) {
-                createPlate(i)
-            }
-        });
 
-        // for (let i = start; i < end && i < items.length; i++) {
-        //     items[i].style = 'display: flex';
-        // }
+        createPage(); 
 
-        if (showAllItems) {
-            createPage()
-            for (let i = start; i < end && i < filteredItems.length; i++) {
-                createPlate(i)
-            }
+        for (let i = start; i < end && i < filteredItems.length; i++) {
+            createPlate(i);
         }
-        
+
         if (filteredItems.length === 0) {
             noResultsMessage.style.display = 'block';
             pagination.style.display = 'none';
-            document.getElementById('catalog__container').style.display = 'none'
+            document.getElementById('catalog__container').style.display = 'none';
         } else {
             noResultsMessage.style.display = 'none';
             pagination.style.display = 'flex';
-            document.getElementById('catalog__container').style.display = 'grid'
+            document.getElementById('catalog__container').style.display = 'grid';
         }
-
     }
 
     function renderPagination() {
         const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
         pagination.innerHTML = '';
+        
     }
 
     function saveState() {
@@ -135,14 +113,12 @@ document.addEventListener('DOMContentLoaded', async function () {
         });
     });
 
-
     document.querySelectorAll('.catalog__container').forEach(plate => {
         plate.addEventListener('click', function (elem) {
-            const itemid = elem.target.closest('.catalog__plate').getAttribute('data-id')
-            localStorage.setItem('item-id', itemid)
+            const itemid = elem.target.closest('.catalog__plate').getAttribute('data-id');
+            localStorage.setItem('item-id', itemid);
         });
     });
-
 
     document.getElementById('showAllButton').addEventListener('click', function () {
         showAllItems = true;
@@ -150,10 +126,10 @@ document.addEventListener('DOMContentLoaded', async function () {
     });
 
     function updateCatalog() {
-        saveState(); 
+        saveState();
         renderCatalog(currentPage);
         renderPagination();
-        showAllItems=false
+        showAllItems = false;
     }
 
     updateCatalog();
