@@ -1,6 +1,6 @@
-// слайдер  
-
+// cлайдер
 let currentSlide = 0;
+let slideInterval;
 const slides = document.querySelectorAll('.slider__slide');
 
 function showSlide(index) {
@@ -27,7 +27,24 @@ function prevSlide() {
 }
 
 // смена слайдов каждые 10 секунд
-setInterval(nextSlide, 6000);
+// setInterval(nextSlide, 3000);
 
-// Показать первый слайд
+// Показывает первый слайд
 showSlide(currentSlide);
+
+
+
+// смена слайдов каждые 10 секунд
+function startSlideShow() {
+    slideInterval = setInterval(() => {
+        nextSlide(1);
+    }, 3000); 
+}
+
+function stopSlideShow() {
+    clearInterval(slideInterval);
+}
+
+const slider = document.getElementById('slider');
+slider.addEventListener('mouseenter', stopSlideShow);
+slider.addEventListener('mouseleave', startSlideShow);

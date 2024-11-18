@@ -16,6 +16,11 @@
         font-size: 30px;
         font-weight: 700;
         color: #304041;
+        display: flex;
+        justify-content: center;
+        @media (max-width: 768px) {
+            font-size: 22px;
+        }
     }
     &__wrap{
         display: flex;
@@ -29,11 +34,27 @@
         flex-direction: row;
         justify-content: center;
         align-items: center;
+        @media (max-width: 1024px) {
+            gap: 50px;
+            flex-direction: column;
+        }
     }
     &__description{
         font-size: 20px;
         font-weight: 500;
-        width: 350px;
+        width: 900px;
+        @media (min-width: 320px) {
+            width: 270px;
+        }
+        @media (min-width: 375px) {
+            width: 332px;
+        }
+        @media (min-width: 425px) {
+            width: 352px;
+        }
+        @media (min-width: 768px) {
+            width: 700px;
+        }
     }
     &__img{
         display: flex;
@@ -48,19 +69,97 @@
     iframe{
         width: 450px;
         height: 450px;
-        border-radius: 10px;
+        border-radius: 20px;
         @media (max-width: 376px) {
+            width: 285px;
+            height: 250px;
+        }
+        @media (min-width: 376px) {
+            width: 350px;
+            height: 250px;
         }
         @media (min-width: 425px) {
+            width: 380px;
+            height: 250px;
         }
         @media (min-width: 768px) {
+            width: 735px;
+            height: 300px;
         }
         @media (min-width: 1024px) {
+            width: 900px;
+            height: 300px;
         }
         @media (min-width: 1400px) {
-            
+            width: 380px;
+            height: 380px;
         }
       } 
     
         
 }
+
+.slider {
+    border-radius: 20px;
+    position: relative;
+    width: 50%;
+    margin: auto;
+    overflow: hidden;
+    @media (max-width: 376px) {
+      width: 100%;
+    }
+    @media (min-width: 425px) {
+        width: 100%; 
+    }
+    @media (min-width: 768px) {
+        width: 95%;
+    }
+    @media (min-width: 1024px) {
+        width: 95%;
+        height: 550px;
+    }
+    @media (min-width: 1400px) {
+        width: 55%;
+        height: 380px;
+    }
+    &__slides {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+    &__slide {
+      min-width: 100%;
+      box-sizing: border-box;
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  
+    &__prev {
+      border-radius: 20px;
+      left: 10px;
+      position: absolute;
+      z-index: 3;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: #000000;
+      color: white;
+      border: none;
+      padding: 25px 12px;
+      cursor: pointer;
+    }
+  
+    &__next {
+      border-radius: 20px;
+      right: 10px;
+      position: absolute;
+      z-index: 3;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: #000000;
+      color: white;
+      border: none;
+      padding: 25px 12px;
+      cursor: pointer;
+    }
+  }
