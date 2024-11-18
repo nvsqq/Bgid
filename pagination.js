@@ -38,7 +38,8 @@ document.addEventListener('DOMContentLoaded', async function () {
         catalogPlate.setAttribute('data-id', filteredItems[elemNum].id);
         catalogPlate.innerHTML = `
         <button id="contactBtn" class="btn">
-            <img src="./assets/img/${filteredItems[elemNum].imgs[0]}" class="catalog__container_plate_img"></img>
+        <a href="./attractions.html">
+            <img src="${filteredItems[elemNum].imgs[0]}" class="catalog__container_plate_img"></img>
             <div class="catalog__plate_text">   
                 <h4 class="catalog__plate_title">
                     ${filteredItems[elemNum].title}
@@ -48,6 +49,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                     ${filteredItems[elemNum].description_plate}
                 </p>
             </div>
+        </a>
         </button>
         `;
         document.getElementById('catalog__container').appendChild(catalogPlate);
@@ -56,6 +58,15 @@ document.addEventListener('DOMContentLoaded', async function () {
     function createPage() {
         document.querySelector('.catalog__container').innerHTML = '';
     }
+
+    
+    document.querySelectorAll('.catalog__container').forEach(plate => {
+        plate.addEventListener('click', function (elem) {
+            const itemid = elem.target.closest('.catalog__plate').getAttribute('data-id')
+            localStorage.setItem('item-id', itemid)
+        });
+    });
+
 
     function renderCatalog(page) {
         currentPage = parseInt(localStorage.getItem('currentPage')) || 1;
@@ -85,10 +96,24 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
     }
 
+   
     function renderPagination() {
         const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
         pagination.innerHTML = '';
-        
+    
+        for (let i = 1; i <= totalPages; i++) {
+            const pageButton = document.createElement('button');
+            pageButton.textContent = i;
+            pageButton.classList.add('pagination__button');
+            if (i === currentPage) {
+                pageButton.classList.add('active'); 
+            }
+            pageButton.addEventListener('click', function () {
+                currentPage = i;
+                updateCatalog();
+            });
+            pagination.appendChild(pageButton);
+        }
     }
 
     function saveState() {

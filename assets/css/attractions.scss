@@ -55,6 +55,12 @@
         @media (min-width: 768px) {
             width: 700px;
         }
+        @media (min-width: 1024px) {
+            width: 1200px;
+        }
+        @media (min-width: 1400px) {
+            width: 1200px;
+        }
     }
     &__img{
         display: flex;

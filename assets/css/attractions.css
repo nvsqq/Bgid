@@ -378,6 +378,16 @@ li {
     width: 700px;
   }
 }
+@media (min-width: 1024px) {
+  .card__description {
+    width: 1200px;
+  }
+}
+@media (min-width: 1400px) {
+  .card__description {
+    width: 1200px;
+  }
+}
 .card__img {
   display: flex;
   flex-direction: column;
