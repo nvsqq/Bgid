@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     <div class="card" style="margin: 150px;">
     <div class="container">
                 <div class="card__title">
-                    <p>${getItem.title}</p>
+             <a href="./catalog.html" style="width: 35px; height: 35px; margin-right: 50px;"><img src="./assets/img/free-icon-arrow-left-9847479.png" style="width: 35px; height: 35px;" alt="cnhtkrf"></a>       <p>${getItem.title}</p>
                 </div>
                 <div class="card__wrap">
                     <div class="card__card">
