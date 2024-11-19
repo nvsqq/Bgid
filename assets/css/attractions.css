@@ -380,7 +380,7 @@ li {
 }
 @media (min-width: 1024px) {
   .card__description {
-    width: 1200px;
+    width: 966px;
   }
 }
 @media (min-width: 1400px) {
@@ -508,4 +508,34 @@ li {
   border: none;
   padding: 25px 12px;
   cursor: pointer;
+}
+
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(89, 83, 83);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+#preloader .loader {
+  border: 30px solid #ffffff;
+  border-top: 30px solid #b41e1e;
+  border-radius: 100%;
+  width: 150px;
+  height: 150px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
