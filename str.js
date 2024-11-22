@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     let itemid = localStorage.getItem('item-id')
     let getItem = []
     let currentImg = 0;
-    let random_reviews = Math.floor(Math.random() * (999 - 1 + 1) + 1)
 
     async function getData() {
         try {
@@ -51,10 +50,10 @@ document.addEventListener('DOMContentLoaded', async function () {
             </div>
     `;
 
-    // Slider functionality
+    // Slider 
     let currentSlide = 0;
     let slideInterval;
-    const slides = document.querySelectorAll('.slider__slide'); // Corrected selector
+    const slides = document.querySelectorAll('.slider__slide');
 
     function showSlide(index) {
         if (index >= slides.length) {
@@ -65,7 +64,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
 
         const slideWidth = slides[currentSlide].clientWidth;
-        const slidesContainer = document.querySelector('.slider__slides'); // Corrected selector
+        const slidesContainer = document.querySelector('.slider__slides');
         slidesContainer.style.transform = `translateX(${-currentSlide * slideWidth}px)`;
     }
 
@@ -82,7 +81,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     // Показывает первый слайд
     showSlide(currentSlide);
 
-    // смена слайдов каждые 10 секунд
+    // смена слайдов каждые 3 секунды
     function startSlideShow() {
         slideInterval = setInterval(() => {
             nextSlide();
