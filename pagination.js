@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     let activeFilter = new URLSearchParams(window.location.search).get('filter') || 'Все';
     let currentPage = parseInt(localStorage.getItem('currentPage')) || 1;
 
-    const itemsPerPage = 6;
+    const itemsPerPage = 10;
     let items = [];
     const pagination = document.getElementById('pagination');
     const noResultsMessage = document.getElementById('noResultsMessage');
