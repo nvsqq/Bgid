@@ -1,39 +1,30 @@
 document.addEventListener('DOMContentLoaded', async function () {
     let items = [];
-    let itemid = localStorage.getItem('item-id');
     let getItem = [];
     let currentImg = 0;
 
-    // Функция для обновления URL с текущим ID
     function updateUrlWithId(id) {
         const newUrl = `${window.location.pathname}?attractions-id=${id}`;
-        history.replaceState(null, '', newUrl);
-    }
-
-    // Проверяем, есть ли ID в URL, если нет - берем из localStorage
-    const urlParams = new URLSearchParams(window.location.search);
-    const urlItemId = urlParams.get('item-id');
-    if (urlItemId) {
-        itemid = urlItemId; // Если ID есть в URL, используем его
-    } else {
-        updateUrlWithId(itemid); // Если ID нет в URL, обновляем URL из localStorage
+        history.replaceState(null, '', newUrl); 
     }
 
     async function getData() {
         try {
+            
             const response = await fetch('https://672a01fc6d5fa4901b6f58b6.mockapi.io/catalog/catalog');
             const items_temp = await response.json();
-            items_temp.forEach(item => {
-                if (item.id == itemid) {
-                    getItem = item;
-                }
-            });
+
+            
+            getItem = items_temp[0]; 
+
+            updateUrlWithId(getItem.id);
         } catch (error) {
             console.error('Ошибка:', error);
         }
     }
 
-    await getData();
+    await getData(); 
+
     document.querySelector('.card').innerHTML = `
     <div class="card" style="margin: 150px;">
         <div class="container">
