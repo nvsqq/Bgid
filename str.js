@@ -45,8 +45,10 @@ document.addEventListener('DOMContentLoaded', async function () {
                 <div class="card__card">
                     <div class="slider" id="slider">
                         <div class="slider__slides">
-                            ${getItem.imgs.map(img => `<div class="slider__slide"><img src="${img}" alt="${img}"></div>`).join('')}
-                        </div>
+                                <div class="slider__slide"><img src="${getItem.imgs[0]}" alt="${getItem.imgs[0]}"></div>
+                                <div class="slider__slide"><img src="${getItem.imgs[1]}" alt="${getItem.imgs[1]}"></div>
+                                <div class="slider__slide"><img src="${getItem.imgs[2]}" alt="${getItem.imgs[2]}"></div>
+                                <div class="slider__slide"><img src="${getItem.imgs[3]}" alt="${getItem.imgs[3]}"></div>                        </div>
                     </div>
                     <div style="position:relative;overflow:hidden;">
                         <iframe src="${getItem.src_map}" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe>
