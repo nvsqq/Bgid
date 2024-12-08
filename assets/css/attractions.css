@@ -300,6 +300,9 @@ li {
 .card {
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin: 40px auto;
 }
 .card__title {
   margin-bottom: 50px;
@@ -307,7 +310,11 @@ li {
   font-weight: 700;
   color: #304041;
   display: flex;
+  align-items: center;
   justify-content: center;
+}
+.card__title p {
+  margin: 0 0 0 10px;
 }
 @media (max-width: 768px) {
   .card__title {
@@ -321,11 +328,11 @@ li {
   row-gap: 65px;
 }
 .card__card {
-  gap: 100px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  gap: 100px;
 }
 @media (max-width: 1024px) {
   .card__card {
@@ -419,7 +426,6 @@ li {
 
 .slider {
   border-radius: 20px;
-  position: relative;
   width: 50%;
   margin: auto;
   overflow: hidden;
@@ -447,8 +453,9 @@ li {
 }
 @media (min-width: 1400px) {
   .slider {
-    width: 55%;
+    width: 45%;
     height: 380px;
+    margin: 10px;
   }
 }
 .slider__slides {
@@ -462,32 +469,6 @@ li {
 .slider__slide img {
   width: 100%;
   height: auto;
-}
-.slider__prev {
-  border-radius: 20px;
-  left: 10px;
-  position: absolute;
-  z-index: 3;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: #000000;
-  color: white;
-  border: none;
-  padding: 25px 12px;
-  cursor: pointer;
-}
-.slider__next {
-  border-radius: 20px;
-  right: 10px;
-  position: absolute;
-  z-index: 3;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: #000000;
-  color: white;
-  border: none;
-  padding: 25px 12px;
-  cursor: pointer;
 }
 
 #preloader {
@@ -519,7 +500,6 @@ li {
     transform: rotate(360deg);
   }
 }
-/* styles.css */
 .modal {
   display: none;
   position: fixed;
@@ -527,102 +507,166 @@ li {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.9);
   align-items: center;
   justify-content: center;
   z-index: 1000;
 }
-
-.modal-content {
+.modal .modal-content {
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 100%;
-  max-height: 100%;
   width: 100%;
   height: 100%;
 }
-
-.modal img {
+.modal .modal-content img {
   width: 100%;
   height: 100%;
   -o-object-fit: contain;
-     object-fit: contain; /* Сохраняем пропорции */
+     object-fit: contain;
 }
-
-button {
+.modal button {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
   background: rgba(255, 255, 255, 0.7);
   border: none;
-  padding: 10px;
+  border-radius: 20%;
+  padding: 15px;
   cursor: pointer;
   font-size: 24px;
+  color: #000;
+  z-index: 1001;
 }
-
-button.prev {
-  left: 10px;
+.modal button:hover {
+  background: rgba(255, 255, 255, 0.9);
 }
-
-button.next {
-  right: 10px;
-}
-
-button.close {
-  top: 20px;
-  right: 20px;
-  font-size: 36px;
-  color: white;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-/* Стили для стрелочек */
-button.prev::before {
-  content: "<";
-}
-
-button.next::before {
+.modal button.prev-modal {
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
   content: ">";
 }
-
-/* Убираем возможность прокрутки страницы */
-body {
-  overflow-x: hidden;
+.modal button.next-modal {
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.modal button.close {
+  top: 20px;
+  right: 20px;
+  font-size: 32px;
+  background: none;
+  color: #fff;
 }
 
-/* Адаптивность */
 @media (max-width: 768px) {
-  .modal img {
-    max-width: 100%;
-    max-height: 80vh;
+  .modal-content img {
+    width: 100%;
+    height: auto;
   }
   button {
-    font-size: 20px;
-    padding: 8px;
+    font-size: 18px;
+    padding: 10px;
   }
 }
 @media (max-width: 480px) {
   button {
-    font-size: 18px;
-    padding: 6px;
+    font-size: 16px;
+    padding: 8px;
   }
 }
-/* Slider styles */
+.comments-container {
+  width: 50%;
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+@media (max-width: 1024px) {
+  .comments-container {
+    width: 90%;
+  }
+}
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.comment-form input,
+.comment-form textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+}
+
+.comment-form button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  max-width: 150px;
+  width: 100%;
+}
+
+.comment-form button:hover {
+  background-color: #0056b3;
+}
+
+.comments-container h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+#comments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.comment {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.comment div {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.comment button.delete-comment {
+  align-self: flex-start;
+  background-color: transparent;
+  border: none;
+  color: red;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 10px;
+  background-color: #b41e1e;
+  padding: 10px;
+  border-radius: 5px;
+  width: 40px;
+}
+.comment button.delete-comment img {
+  width: 100%;
+}
+
+.comment button.delete-comment:hover {
+  color: darkred;
+}
+
 .slider__slides {
   display: flex;
-  transition: transform 0.5s ease-in-out;
-}
-
-.slider__slide {
-  min-width: 100%;
-  box-sizing: border-box;
-}
-
-.slider__slide img {
-  width: 100%;
-  height: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
