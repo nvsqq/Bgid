@@ -45,10 +45,11 @@ document.addEventListener('DOMContentLoaded', async function () {
                 <div class="card__card">
                     <div class="slider" id="slider">
                         <div class="slider__slides">
-                                <div class="slider__slide"><img src="${getItem.imgs[0]}" alt="${getItem.imgs[0]}"></div>
-                                <div class="slider__slide"><img src="${getItem.imgs[1]}" alt="${getItem.imgs[1]}"></div>
-                                <div class="slider__slide"><img src="${getItem.imgs[2]}" alt="${getItem.imgs[2]}"></div>
-                                <div class="slider__slide"><img src="${getItem.imgs[3]}" alt="${getItem.imgs[3]}"></div>                        </div>
+                            <div class="slider__slide"><img src="${getItem.imgs[0]}" alt="${getItem.imgs[0]}" class="slider-img"></div>
+                            <div class="slider__slide"><img src="${getItem.imgs[1]}" alt="${getItem.imgs[1]}" class="slider-img"></div>
+                            <div class="slider__slide"><img src="${getItem.imgs[2]}" alt="${getItem.imgs[2]}" class="slider-img"></div>
+                            <div class="slider__slide"><img src="${getItem.imgs[3]}" alt="${getItem.imgs[3]}" class="slider-img"></div>                
+                        </div>
                     </div>
                     <div style="position:relative;overflow:hidden;">
                         <iframe src="${getItem.src_map}" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe>
@@ -63,9 +64,79 @@ document.addEventListener('DOMContentLoaded', async function () {
         </div>
     </div>`;
 
-    // Slider 
+    // Модальное окно
+    const modal = document.createElement('div');
+    modal.classList.add('modal');
+    const modalContent = document.createElement('div');
+    modalContent.classList.add('modal-content');
+    const modalImage = document.createElement('img');
+    modalContent.appendChild(modalImage);
+
+    const closeButton = document.createElement('button');
+    closeButton.classList.add('close');
+    closeButton.innerHTML = '&times;'; 
+    modalContent.appendChild(closeButton);
+
+    modal.appendChild(modalContent);
+    document.body.appendChild(modal);
+
+    function showModal(index) {
+        currentImg = index;
+        modalImage.src = getItem.imgs[currentImg];
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden'; 
+    }
+
+    function closeModal() {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto'; 
+    }
+
+    function nextImage() {
+        currentImg = (currentImg + 1) % getItem.imgs.length;
+        modalImage.src = getItem.imgs[currentImg];
+    }
+
+    function prevImage() {
+        currentImg = (currentImg - 1 + getItem.imgs.length) % getItem.imgs.length;
+        modalImage.src = getItem.imgs[currentImg];
+    }
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+
+    closeButton.addEventListener('click', closeModal); 
+
+    // Клик по изображению в слайдере
+    const sliderImages = document.querySelectorAll('.slider-img');
+    sliderImages.forEach((img, index) => {
+        img.addEventListener('click', () => showModal(index));
+    });
+
+    // переключениe
+    const nextButton = document.createElement('button');
+    nextButton.classList.add('next'); 
+    const prevButton = document.createElement('button');
+    prevButton.classList.add('prev'); 
+
+    nextButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+        nextImage();
+    });
+
+    prevButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+        prevImage();
+    });
+
+    modalContent.appendChild(prevButton);
+    modalContent.appendChild(nextButton);
+
+    
     let currentSlide = 0;
-    let slideInterval;
     const slides = document.querySelectorAll('.slider__slide');
 
     function showSlide(index) {
@@ -91,10 +162,10 @@ document.addEventListener('DOMContentLoaded', async function () {
         showSlide(currentSlide);
     }
 
-    // Показывает первый слайд
+    
     showSlide(currentSlide);
 
-    // Смена слайдов каждые 3 секунды
+    let slideInterval;
     function startSlideShow() {
         slideInterval = setInterval(() => {
             nextSlide();
@@ -109,6 +180,5 @@ document.addEventListener('DOMContentLoaded', async function () {
     slider.addEventListener('mouseenter', stopSlideShow);
     slider.addEventListener('mouseleave', startSlideShow);
 
-    // Запуск слайдера
     startSlideShow();
 });
