@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 window.scroll({
                     top: 0,
                     left: 0,
-                    behavior: 'smooth' // Это как катание на круизном лайнере 🛥️
+                    behavior: 'smooth' 
                   });
                   
             });

@@ -599,6 +599,9 @@ li {
   border-radius: 5px;
   border: 1px solid #ddd;
   font-size: 16px;
+  resize: vertical;
+  max-height: 200px;
+  min-height: 60px;
 }
 
 .comment-form button {

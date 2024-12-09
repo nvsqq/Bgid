@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 </form>
             </div>
 
-            <!-- Секция комментариев -->
+            <!-- отзывы -->
             <div class="comments-container">
                 <h3>Отзывы</h3>
                 <div id="comments-list"></div>
