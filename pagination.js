@@ -111,6 +111,12 @@ document.addEventListener('DOMContentLoaded', async function () {
             pageButton.addEventListener('click', function () {
                 currentPage = i;
                 updateCatalog();
+                window.scroll({
+                    top: 0,
+                    left: 0,
+                    behavior: 'smooth' // Это как катание на круизном лайнере 🛥️
+                  });
+                  
             });
             pagination.appendChild(pageButton);
         }
