@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
 
     await getData();
+
     document.querySelector('.card').innerHTML = `
         <div class="card">
             <div class="container">
@@ -69,11 +70,19 @@ document.addEventListener('DOMContentLoaded', async function () {
                 <form id="comment-form" class="comment-form">
                     <input type="text" id="name" placeholder="Ваше имя" required>
                     <textarea id="text" placeholder="Ваш отзыв" required></textarea>
-                    <button type="submit">Отправить</button>
+                    <div class="captcha">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="captchaCheckbox"> 
+                        </label>
+                        <p>Я не робот</p>
+                        
+                    </div>
+                    <div id="message"></div>
+                    <button id="submitBtn" disabled type="submit">Отправить</button>
                 </form>
             </div>
 
-            <!-- отзывы -->
+            <!-- Отзывы -->
             <div class="comments-container">
                 <h3>Отзывы</h3>
                 <div id="comments-list"></div>
@@ -153,10 +162,9 @@ document.addEventListener('DOMContentLoaded', async function () {
         img.addEventListener('click', () => showModal(index));
     });
 
-    
     let sliderInterval; 
     let isMouseOverSlider = false; 
-    let isModalOpen = false; 
+    let isModalOpen = false;
 
     function autoSwitchSlide() {
         const slider = document.getElementById('slider');
@@ -206,38 +214,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     // Запуск автопрокрутки при загрузке
     startAutoSlider();
 
-
-    const commentForm = document.getElementById('comment-form');
-    commentForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-
-        const name = document.getElementById('name').value;
-        const text = document.getElementById('text').value;
-
-        if (name && text) {
-            try {
-                const response = await fetch('https://672a01fc6d5fa4901b6f58b6.mockapi.io/comments', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        name: name,
-                        text: text,
-                        attractionId: itemid
-                    }),
-                });
-
-                if (response.ok) {
-                    loadComments();
-                    commentForm.reset();
-                }
-            } catch (error) {
-                console.error('Ошибка при добавлении отзыва:', error);
-            }
-        }
-    });
-
     // Загрузка комментариев
     async function loadComments() {
         try {
@@ -285,4 +261,54 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     // Загрузка комментариев при загрузке страницы
     loadComments();
+
+    const captchaCheckbox = document.getElementById('captchaCheckbox');
+    const submitBtn = document.getElementById('submitBtn');
+    const messageDiv = document.getElementById('message');
+
+    captchaCheckbox.addEventListener('change', () => {
+        submitBtn.disabled = !captchaCheckbox.checked;
+        messageDiv.textContent = ''; 
+    });
+
+    submitBtn.addEventListener('click', () => {
+        if (captchaCheckbox.checked) {
+            messageDiv.textContent = "Поздравляем вы не робот!";
+            messageDiv.style.color = "green"; 
+        } else {
+            messageDiv.textContent = "Пожалуйста, подтвердите, что вы не робот.";
+            messageDiv.style.color = "red"; 
+        }
+    });
+
+    const commentForm = document.getElementById('comment-form');
+    commentForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById('name').value;
+        const text = document.getElementById('text').value;
+
+        if (name && text) {
+            try {
+                const response = await fetch('https://672a01fc6d5fa4901b6f58b6.mockapi.io/comments', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        text: text,
+                        attractionId: itemid
+                    }),
+                });
+
+                if (response.ok) {
+                    loadComments();
+                    commentForm.reset();
+                }
+            } catch (error) {
+                console.error('Ошибка при добавлении отзыва:', error);
+            }
+        }
+    });
 });

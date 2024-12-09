@@ -673,3 +673,18 @@ li {
   overflow-x: hidden;
   scroll-behavior: smooth;
 }
+
+.captcha {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#captchaCheckbox {
+  cursor: pointer;
+  width: 30px;
+}
+
+#message {
+  color: green;
+}

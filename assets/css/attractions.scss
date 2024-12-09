@@ -391,3 +391,19 @@
     scroll-behavior: smooth;
 }
 
+
+.captcha{
+  display: flex;
+  align-items: center;
+  gap:10px;
+}
+#captchaCheckbox{
+  cursor: pointer;
+  width: 30px;
+}
+
+#message {
+  // margin-top: 10px;
+  color: green;
+}
+
