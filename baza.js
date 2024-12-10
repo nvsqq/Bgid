@@ -42,8 +42,7 @@ showSlide(currentSlide);
 
 
 
-// интерактифчек с картой ()
-// script.js
+// интерактифчек с картой
 class MapSwitcher {
     constructor(mapIds, buttonIds) {
         this.maps = mapIds.map(id => document.getElementById(id));

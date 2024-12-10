@@ -9,19 +9,16 @@ document.addEventListener('DOMContentLoaded', async function () {
     const pagination = document.getElementById('pagination');
     const noResultsMessage = document.getElementById('noResultsMessage');
 
-    async function getData() {
+    // Функция для получения данных с сервера с параметрами поиска
+    async function getData(searchTerm = '') {
         try {
-            const response = await fetch('https://672a01fc6d5fa4901b6f58b6.mockapi.io/catalog/catalog');
-            const items_temp = await response.json(); 
-            items_temp.forEach(item => {
-                items.push(item);
-            });
+            const response = await fetch(`https://672a01fc6d5fa4901b6f58b6.mockapi.io/catalog/catalog?search=${searchTerm}`);
+            const items_temp = await response.json();
+            items = items_temp; // Обновляем список всех элементов
         } catch (error) {
             console.error('Ошибка:', error);
         }
     }
-
-    await getData(); 
 
     activeFilter = 'Все';
     localStorage.setItem('currentPage', 1);
@@ -59,7 +56,6 @@ document.addEventListener('DOMContentLoaded', async function () {
         document.querySelector('.catalog__container').innerHTML = '';
     }
 
-    
     document.querySelectorAll('.catalog__container').forEach(plate => {
         plate.addEventListener('click', function (elem) {
             const itemid = elem.target.closest('.catalog__plate').getAttribute('data-id')
@@ -67,16 +63,17 @@ document.addEventListener('DOMContentLoaded', async function () {
         });
     });
 
-
-    function renderCatalog(page) {
+    // Функция для рендеринга каталога с учетом фильтрации и поиска
+    async function renderCatalog(page) {
         currentPage = parseInt(localStorage.getItem('currentPage')) || 1;
         const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+        await getData(searchTerm); // Получаем данные с сервера с параметром поиска
+
         const start = (page - 1) * itemsPerPage;
         const end = start + itemsPerPage;
-        
+
         filteredItems = Array.from(items).filter(item => {
-            const title = item.title.toLowerCase(); 
-            return title.includes(searchTerm) && (activeFilter == 'Все' || item.filtr === activeFilter);
+            return (activeFilter == 'Все' || item.filtr === activeFilter);
         });
 
         createPage(); 
@@ -96,7 +93,6 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
     }
 
-   
     function renderPagination() {
         const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
         pagination.innerHTML = '';
@@ -116,7 +112,6 @@ document.addEventListener('DOMContentLoaded', async function () {
                     left: 0,
                     behavior: 'smooth' 
                   });
-                  
             });
             pagination.appendChild(pageButton);
         }
@@ -129,6 +124,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         window.history.replaceState(null, '', url);
     }
 
+    // Обработчик ввода в поисковой строке
     document.getElementById('searchInput').addEventListener('input', function () {
         currentPage = 1; 
         updateCatalog();
