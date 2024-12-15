@@ -46,6 +46,15 @@
     justify-content: center;
     align-items: center;
     gap: 100px;
+    padding: 20px;
+    background-color: #c0c0c0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    p{
+      border-radius: 10px;
+      background-color: #eeeaea;
+      padding: 10px;
+    }
 
     @media (max-width: 1024px) {
       gap: 50px;
@@ -84,6 +93,7 @@
   }
 
   &__img {
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
 
@@ -93,6 +103,9 @@
   }
 
   iframe {
+    border-radius: 10px;
+      background-color: #eeeaea;
+      padding: 10px;
     width: 450px;
     height: 450px;
     border-radius: 20px;
@@ -131,6 +144,9 @@
 
 // Слайдер
 .slider {
+  // border-radius: 10px;
+      background-color: #eeeaea;
+      padding: 10px;
   border-radius: 20px;
   width: 50%;
   margin: auto;
@@ -160,6 +176,7 @@
   }
 
   &__slides {
+    border-radius: 20px;
     display: flex;
     transition: transform 0.5s ease;
   }
@@ -292,7 +309,7 @@
   width: 50%;
   margin-top: 30px;
   padding: 20px;
-  background-color: #f9f9f9;
+  background-color: #c0c0c0;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   @media (max-width: 1024px) {
@@ -321,7 +338,7 @@
 
 .comment-form button {
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #7ad0ff;
   color: white;
   border: none;
   border-radius: 5px;
@@ -332,7 +349,7 @@
 }
 
 .comment-form button:hover {
-  background-color: #0056b3;
+  background: #61a6cb;
 }
 
 .comments-container h3 {
@@ -349,7 +366,7 @@
 .comment {
   display: flex;
   flex-direction: column;
-  background-color: #fff;
+  background-color: #d0caca;
   padding: 15px;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -398,12 +415,99 @@
   gap:10px;
 }
 #captchaCheckbox{
+  background-color: #304041;
   cursor: pointer;
   width: 30px;
+}
+
+label input {
+  display: none;/* <--скрываем дефолтный чекбокс */
+}
+label span {/* <-- стилизируем новый */
+  height: 30px;
+  width: 30px;
+  border: 1px solid gray;
+  display: inline-block;
+  position: relative;
+  background-color:#FFF;
+  border-radius:2px;
+  padding:3px;
+  // background-color: #7ad0ff;
+}
+[type=checkbox]:checked + span:before {/* <-- ставим иконку, когда чекбокс включен  */
+  content: '\2714';
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  top: 0px;
+  left: 0;
+  font-size:25px;
+  color:rgb(255, 255, 255);
+  background-color: #7ad0ff;
+  border: 1px solid gray;
+
 }
 
 #message {
   // margin-top: 10px;
   color: green;
+}
+
+.catalog__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Сетка с адаптивными колонками */
+  gap: 20px; /* Расстояние между плитками */
+  justify-content: center; /* Выравнивание плиток */
+  padding: 20px;
+}
+
+.catalog__plate {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.catalog__plate:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.catalog__container_plate_img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-bottom: 1px solid #ddd;
+}
+
+.catalog__plate_text {
+  padding: 15px;
+}
+
+.catalog__plate_title {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.catalog__plate_description {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+
+.comment__name {
+  border-radius: 10px;
+  background-color: #dddcdc;
+  padding: 10px;
+}
+
+.comment__text  {
+  border-radius: 10px;
+  background-color: #eeeaea;
+  padding: 10px;
 }
 

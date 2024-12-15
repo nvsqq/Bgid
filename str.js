@@ -73,6 +73,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                     <div class="captcha">
                         <label class="checkbox-label">
                             <input type="checkbox" id="captchaCheckbox"> 
+                            <span></span>
                         </label>
                         <p>Я не робот</p>
                         
@@ -228,8 +229,8 @@ document.addEventListener('DOMContentLoaded', async function () {
                 commentElement.classList.add('comment');
                 commentElement.innerHTML = `
                     <div>
-                        <strong>${comment.name}</strong>
-                        <p>${comment.text}</p>
+                        <strong class="comment__name">${comment.name}</strong>
+                        <p class="comment__text">${comment.text}</p>
                         <button class="delete-comment" data-id="${comment.id}">
                             <img src="https://cdn-icons-png.flaticon.com/512/7709/7709786.png" alt="" class="delete-icon">
                         </button>

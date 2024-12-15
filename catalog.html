@@ -51,6 +51,15 @@
                         <button class="catalog__filter-btn" data-id="Площади">Площади</button>
                         <button class="catalog__filter-btn" data-id="Все" id="showAllButton">Сбросить фильтры</button>
                     </div>
+                    <label for="sortBy">Сортировать по:</label>
+                    <select id="sortBy" id="sortAttractions">
+                      <option value="attendance&order=desc">По посещаемости (по убыванию)</option>
+                      <option value="attendance&order=asc">По посещаемости (по возрастанию)</option>
+                      <option value="rating&order=desc">По рейтингу (по убыванию)</option>
+                      <option value="rating&order=asc">По рейтингу (по возрастанию)</option>
+                      <option value="title&order=asc">По названию (А-Я)</option>
+                      <option value="title&order=desc">По названию (Я-А)</option>
+                    </select>
                 </div>
                 <div class="catalog__right-block">
                     <div class="catalog__title">

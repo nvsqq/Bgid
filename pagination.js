@@ -3,22 +3,27 @@ document.addEventListener('DOMContentLoaded', async function () {
     let filteredItems = [];
     let activeFilter = new URLSearchParams(window.location.search).get('filter') || 'Все';
     let currentPage = parseInt(localStorage.getItem('currentPage')) || 1;
+    let attractionData
+    const sortBy = document.getElementById('sortBy').value
 
     const itemsPerPage = 10;
     let items = [];
     const pagination = document.getElementById('pagination');
     const noResultsMessage = document.getElementById('noResultsMessage');
+    
 
-    // Функция для получения данных с сервера с параметрами поиска
-    async function getData(searchTerm = '') {
-        try {
-            const response = await fetch(`https://672a01fc6d5fa4901b6f58b6.mockapi.io/catalog/catalog?search=${searchTerm}`);
-            const items_temp = await response.json();
-            items = items_temp; // Обновляем список всех элементов
-        } catch (error) {
-            console.error('Ошибка:', error);
-        }
+
+async function getData(searchTerm = '', sortBy = '') {
+    try {
+        const apiUrl = `https://672a01fc6d5fa4901b6f58b6.mockapi.io/catalog/catalog?search=${searchTerm}${sortBy ? `&sortBy=${sortBy}` : ''}`;
+        const response = await fetch(apiUrl);
+        const items_temp = await response.json();
+        items = items_temp; 
+        attractionData = items_temp; 
+    } catch (error) {
+        console.error('Ошибка:', error);
     }
+}
 
     activeFilter = 'Все';
     localStorage.setItem('currentPage', 1);
@@ -41,6 +46,8 @@ document.addEventListener('DOMContentLoaded', async function () {
                 <h4 class="catalog__plate_title">
                     ${filteredItems[elemNum].title}
                 </h4>
+                <h4 class="grade">рейтинг: ${filteredItems[elemNum].rating}</h3>
+                <h4 class="grade">посещаемость: ${filteredItems[elemNum].attendance}</h3>
                 <p class="catalog__plate_type">${filteredItems[elemNum].filtr}</p>
                 <p class="catalog__plate_description">
                     ${filteredItems[elemNum].description_plate}
@@ -59,15 +66,16 @@ document.addEventListener('DOMContentLoaded', async function () {
     document.querySelectorAll('.catalog__container').forEach(plate => {
         plate.addEventListener('click', function (elem) {
             const itemid = elem.target.closest('.catalog__plate').getAttribute('data-id')
-            localStorage.setItem('item-id', itemid)
+            window.location.href = `attractions.html?=${itemid}`
         });
     });
 
-    // Функция для рендеринга каталога с учетом фильтрации и поиска
+    
     async function renderCatalog(page) {
         currentPage = parseInt(localStorage.getItem('currentPage')) || 1;
         const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-        await getData(searchTerm); // Получаем данные с сервера с параметром поиска
+        const sortBy = document.getElementById('sortBy').value
+        await getData(searchTerm, sortBy); 
 
         const start = (page - 1) * itemsPerPage;
         const end = start + itemsPerPage;
@@ -75,6 +83,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         filteredItems = Array.from(items).filter(item => {
             return (activeFilter == 'Все' || item.filtr === activeFilter);
         });
+        
 
         createPage(); 
 
@@ -124,7 +133,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         window.history.replaceState(null, '', url);
     }
 
-    // Обработчик ввода в поисковой строке
+    
     document.getElementById('searchInput').addEventListener('input', function () {
         currentPage = 1; 
         updateCatalog();
@@ -136,7 +145,8 @@ document.addEventListener('DOMContentLoaded', async function () {
             currentPage = 1; 
             document.querySelectorAll('.catalog__filter-btn').forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
-            updateCatalog();
+        updateCatalog();
+            
         });
     });
 
@@ -152,6 +162,11 @@ document.addEventListener('DOMContentLoaded', async function () {
         updateCatalog();
     });
 
+   
+    document.addEventListener('change', () => {
+        updateCatalog();
+    })
+
     function updateCatalog() {
         saveState();
         renderCatalog(currentPage);
@@ -161,3 +176,4 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     updateCatalog();
 });
+
