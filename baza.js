@@ -39,9 +39,6 @@ showSlide(currentSlide);
 
 
 
-
-
-
 // интерактифчек с картой
 class MapSwitcher {
     constructor(mapIds, buttonIds) {

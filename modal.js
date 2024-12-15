@@ -1,29 +1,56 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const modal = document.getElementById("contactModal");
-    const btn = document.getElementById("contactBtn");
-    const span = document.getElementsByClassName("close")[0];
+class Modal {
+    constructor(modalId, btnId, closeClass, formId) {
+        this.modal = document.getElementById(modalId);
+        this.btn = document.getElementById(btnId);
+        this.closeBtn = document.getElementsByClassName(closeClass)[0];
+        this.form = document.getElementById(formId);
 
-    // Открыть модальное окно при нажатии на кнопкуЫ
-    btn.onclick = function() {
-        modal.style.display = "block";
+        this.init();
     }
 
-    // Закрыть модальное окно при нажатии на "X"
-    span.onclick = function() {
-        modal.style.display = "none";
+   
+    openModal() {
+        this.modal.style.display = "block";
     }
 
-    // Закрыть модальное окно при нажатии вне его
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
+    
+    closeModal() {
+        this.modal.style.display = "none";
     }
 
-    // отправльение формы
-    document.getElementById("contactForm").onsubmit = function(event) {
+    
+    submitForm(event) {
         event.preventDefault();
-        alert("отправлено");
-        modal.style.display = "none"; 
+        alert("Отправлено");
+        this.closeModal();
     }
-}); 
+
+    
+    setEventListeners() {
+        // Открытие модального окна при нажатии 
+        this.btn.onclick = () => this.openModal();
+
+        // Закрытие модального окна при нажатии на X
+        this.closeBtn.onclick = () => this.closeModal();
+
+        // Закрытие модального окна при клике вне его
+        window.onclick = (event) => {
+            if (event.target === this.modal) {
+                this.closeModal();
+            }
+        };
+
+       
+        this.form.onsubmit = (event) => this.submitForm(event);
+    }
+
+ 
+    init() {
+        this.setEventListeners();
+    }
+}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = new Modal("contactModal", "contactBtn", "close", "contactForm");
+});
