@@ -1,21 +1,7 @@
 document.addEventListener('DOMContentLoaded', async function () {
-    let items = [];
-    let itemid = localStorage.getItem('item-id');
+    let itemid = parseInt(new URLSearchParams(window.location.search).get('attraction-id'))
     let getItem = [];
     let currentImg = 0;
-
-    function updateUrlWithId(id) {
-        const newUrl = `${window.location.pathname}?attractions-id=${id}`;
-        history.replaceState(null, '', newUrl);
-    }
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const urlItemId = urlParams.get('item-id');
-    if (urlItemId) {
-        itemid = urlItemId;
-    } else {
-        updateUrlWithId(itemid);
-    }
 
     async function getData() {
         try {
@@ -24,15 +10,18 @@ document.addEventListener('DOMContentLoaded', async function () {
             items_temp.forEach(item => {
                 if (item.id == itemid) {
                     getItem = item;
+                    
                 }
+                
             });
+            console.log(itemid)
         } catch (error) {
             console.error('Ошибка:', error);
         }
     }
 
     await getData();
-
+    // console.log(getItem)
     document.querySelector('.card').innerHTML = `
         <div class="card">
             <div class="container">
@@ -212,7 +201,6 @@ document.addEventListener('DOMContentLoaded', async function () {
         startAutoSlider();
     });
 
-    // Запуск автопрокрутки при загрузке
     startAutoSlider();
 
     // Загрузка комментариев

@@ -21,39 +21,30 @@ class Slider {
         this.slideContainer.style.transform = `translateX(${-this.currentSlide * slideWidth}px)`;
     }
 
-    
     nextSlide() {
         this.currentSlide++;
         this.showSlide(this.currentSlide);
     }
-
     
     prevSlide() {
         this.currentSlide--;
         this.showSlide(this.currentSlide);
     }
 
-    
     startSlideShow() {
         this.slideInterval = setInterval(() => {
             this.nextSlide();
         }, 3000); 
     }
-
    
     stopSlideShow() {
         clearInterval(this.slideInterval);
     }
-
     
     init() {
         this.showSlide(this.currentSlide);
-
-        
         this.sliderElement.addEventListener('mouseenter', () => this.stopSlideShow());
         this.sliderElement.addEventListener('mouseleave', () => this.startSlideShow());
-
-       
         this.startSlideShow();
     }
 }

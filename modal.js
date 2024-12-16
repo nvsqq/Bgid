@@ -7,17 +7,14 @@ class Modal {
 
         this.init();
     }
-
    
     openModal() {
         this.modal.style.display = "block";
     }
-
     
     closeModal() {
         this.modal.style.display = "none";
     }
-
     
     submitForm(event) {
         event.preventDefault();
@@ -25,15 +22,11 @@ class Modal {
         this.closeModal();
     }
 
-    
     setEventListeners() {
-        // Открытие модального окна при нажатии 
         this.btn.onclick = () => this.openModal();
 
-        // Закрытие модального окна при нажатии на X
         this.closeBtn.onclick = () => this.closeModal();
 
-        // Закрытие модального окна при клике вне его
         window.onclick = (event) => {
             if (event.target === this.modal) {
                 this.closeModal();
@@ -43,13 +36,11 @@ class Modal {
        
         this.form.onsubmit = (event) => this.submitForm(event);
     }
-
  
     init() {
         this.setEventListeners();
     }
 }
-
 
 document.addEventListener('DOMContentLoaded', () => {
     const modal = new Modal("contactModal", "contactBtn", "close", "contactForm");
