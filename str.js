@@ -53,7 +53,6 @@ document.addEventListener('DOMContentLoaded', async function () {
                 </div>
             </div>
         
-            <!-- Форма добавления отзыва -->
             <div class="comments-container">
                 <h3>Добавить отзыв</h3>
                 <form id="comment-form" class="comment-form">
@@ -72,7 +71,6 @@ document.addEventListener('DOMContentLoaded', async function () {
                 </form>
             </div>
 
-            <!-- Отзывы -->
             <div class="comments-container">
                 <h3>Отзывы</h3>
                 <div id="comments-list"></div>
