@@ -242,11 +242,11 @@ document.addEventListener('DOMContentLoaded', async function () {
                 commentsList.appendChild(commentElement);
             });
         } catch (error) {
-            console.error('Ошибка при загрузке комментариев:', error);
+            console.error('Ошибка при загрузке отзывов:', error);
         }
     }
 
-    // Загрузка комментариев при загрузке страницы
+    // Загрузка отзывов при загрузке страницы
     loadComments();
 
     const captchaCheckbox = document.getElementById('captchaCheckbox');
