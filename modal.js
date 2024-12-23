@@ -4,7 +4,7 @@ class Modal {
         this.btn = document.getElementById(btnId);
         this.closeBtn = document.getElementsByClassName(closeClass)[0];
         this.form = document.getElementById(formId);
-
+        
         this.init();
     }
    

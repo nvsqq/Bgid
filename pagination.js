@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
 
    
-    function handleScroll() {
+    function handleScroll() { 
     
         if (isLoading || filteredItems.length <= loadedItems.length) return;  
 
